@@ -1,0 +1,130 @@
+<%- include('layouts/header'); -%>
+<body>
+  <%- include('layouts/nav'); -%>
+  <section class="w50">
+    <form name="myform" method="Post" onsubmit="return formSubmit();"  action="" >
+
+      <label  for = "name">Name:</label>
+      <input type="text" id="name" placeholder="First Last" class="inputtxt" name="name" >
+      <lable id="mandatory">*</lable><br/>
+
+      <label>Email</label>
+      <input id="email" placeholder="email@domain.com" type="text" name="email">
+      <lable id="mandatory">*</lable><br/>
+
+      <label>Phone</label>
+      <input id="phone" placeholder="123-123-1234" type="phone" name="phone">
+      <lable id="mandatory">*</lable><br/>
+
+      <label for = "address">Address:</label>
+      <input type="text" id="address"  name="address">
+      <lable id="mandatory">*</lable><br/>
+
+      <label for = "city">City:</label>
+      <input type="text" id="city" name="city" placeholder="Toronto">
+      <lable id="mandatory">*</lable><br/>
+
+      <label>Postal Code</label>
+      <input id="postcode" placeholder="X9X 9X9" type="postcode" name="postcode">
+      <lable id="mandatory">*</lable><br/>
+
+      <label>Province</label>
+      <select name="province" id="province">
+      <option value="">----- Select -----</option>
+          <option value="ON">ON</option>
+          <option value="QC">QC</option>
+          <option value="NY">NY</option>
+      </select>
+      <lable id="mandatory">*</lable><br/>
+      <br/>
+
+      <label>Product1</label>
+      <input id="product1" type="text" name="product1"><br/>
+
+      <label>Product2</label>
+      <input id="product2" type="text" name="product2"><br/>
+
+      <label>Product3</label>
+      <input id="product3" type="text" name="product3"><br/>
+
+      <label>Delivery Time</label>
+      <select name="deliveryTime" id="deliveryTime">
+        <option value="">----- Select -----</option>
+        <option value="1">1 day</option>
+        <option value="2">2 day</option>
+        <option value="3">3 day</option>
+        <option value="4">4 day</option>
+      </select>
+
+      <br/><br/>
+
+      <input type="submit" value="Place Order">
+      <p id="errors"></p>
+    </form>  
+</section>
+<section class="w50">
+  <div class="formData">
+    <%
+      if(typeof(errors) != 'undefined'){
+        for(var error of errors){
+        %>
+          <p class="errors"><%= error.msg %></p>
+        <%
+        }
+      }
+    %>
+    <%
+      if(typeof(total) != 'undefined'){
+        %>
+        <p id="formResult">Your Receipt:</p>
+        <table>
+          <tr>
+            <th>Name: </th>
+            <td><%= name %></td>
+          </tr>
+          <tr>
+            <th>Email: </th>
+            <td><%= email %></td>
+          </tr>
+          <tr>
+            <th>Phone: </th>
+            <td><%= phone %></td>
+          </tr>
+          <tr>
+            <th>Address: </th>
+            <td><%= address %>, <%= city %>, <%= province %>, <%= postcode %> </td>
+          </tr>
+          <tr>
+            <th>Shipping: </th>
+            <td>$<%= shipping.toFixed(2) %></td>
+          </tr>
+          <tr>
+            <th>Sub Total: </th>
+            <td>$<%= subTotal.toFixed(2) %></td>
+          </tr>
+          <tr>
+            <th>Tax: </th>
+            <td>$<%= tax.toFixed(2) %></td>
+          </tr>
+          <tr>
+            <th>Total: </th>
+            <td>$<%= total.toFixed(2) %></td>
+          </tr>
+        </table>
+        <%
+      }
+    %>
+    
+  </div>
+</section>
+<div class="clear"></div>
+</body>
+<%- include('layouts/footer'); -%>
+
+
+
+
+
+
+
+

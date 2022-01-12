@@ -1,0 +1,38 @@
+<%- include('layouts/header'); -%>
+<body>
+    <%- include('layouts/nav'); -%>
+    <section>
+       <table>
+           <thead>
+                <tr>
+                   <th>Name</th>
+                   <th>Email</th>
+                   <th>Phone</th>
+                   <th>Postcode</th>
+                   <th>Subtotal</th>
+                   <th>Tax</th>
+                   <th>Total</th>
+                 </tr>
+           </thead>
+           <tbody>
+               <%
+                    for(order of orders){
+               %>
+            <tr>
+                <td><%= order.name %></td>
+                <td><%= order.email %></td>
+                <td><%= order.phone %></td>
+                <td><%= order.postcode %></td>
+                <td>$<%= order.subTotal.toFixed(2) %></td>
+                <td>$<%= order.tax.toFixed(2) %></td>
+                <td>$<%= order.total.toFixed(2) %></td>
+              </tr>
+              <%
+            }
+            %>
+           </tbody>
+       </table> 
+    </section>
+
+</body>
+<%- include('layouts/footer'); -%>
